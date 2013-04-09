@@ -14,8 +14,9 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 	private SoundPool mSoundPool;
-	private int mSoundId;
-	private int mSoundId_0_1;
+	private int mSoundIdLong;
+	private int mSoundIdSingle;
+	private int mSoundIdDouble;
 	private ImageView mImageOn;
 
 	@Override
@@ -33,19 +34,19 @@ public class MainActivity extends Activity {
 		mButtonLock.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mSoundPool.play(mSoundId_0_1, 1.0f, 1.0f, 0, 0, 1.0f);
+				mSoundPool.play(mSoundIdSingle, 1.0f, 1.0f, 0, 0, 1.0f);
 			}
 		});
 		mButtonUnlock.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mSoundPool.play(mSoundId_0_1, 1.0f, 1.0f, 0, 1, 1.0f);
+				mSoundPool.play(mSoundIdDouble, 1.0f, 1.0f, 0, 0, 1.0f);
 			}
 		});
 		View.OnLongClickListener doorButtonListener = new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View arg0) {
-				mSoundPool.play(mSoundId, 1.0f, 1.0f, 0, 0, 1.0f);
+				mSoundPool.play(mSoundIdLong, 1.0f, 1.0f, 0, 0, 1.0f);
 				return false;
 			}
 		};
@@ -53,8 +54,9 @@ public class MainActivity extends Activity {
 		mButtonLeftDoor.setOnLongClickListener(doorButtonListener);
 		
 		mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-		mSoundId_0_1 = mSoundPool.load(this, R.raw.sound_pi_0_1, 1);
-		mSoundId = mSoundPool.load(this, R.raw.sound_pi, 1);
+		mSoundIdSingle = mSoundPool.load(this, R.raw.sound_pi_0_1, 1);
+		mSoundIdDouble = mSoundPool.load(this, R.raw.sound_pipi, 1);
+		mSoundIdLong = mSoundPool.load(this, R.raw.sound_pi, 1);
 		
 		View.OnTouchListener touchListener = new View.OnTouchListener() {
 			@Override
